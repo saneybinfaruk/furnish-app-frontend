@@ -1,12 +1,10 @@
-<script setup lang="ts">
-
-
-import {PropType, ref} from "vue";
+<script setup>
 import LineMdPlus from "~icons/line-md/plus";
 import LineMdMinus from "~icons/line-md/minus";
+import RadixIconsPlus from "~icons/radix-icons/plus";
+import RadixIconsMinus from "~icons/radix-icons/minus";
 
 let props = defineProps({
-
   quantity: {
     type: Number,
     default: 0,
@@ -14,29 +12,37 @@ let props = defineProps({
   },
 
   onQuantityChange: {
-    type: Function as PropType<(value:number) => void>,
+    type: Function,
     required: true,
-  }
-
-
-})
-
-
+  },
+});
 </script>
 
-
 <template>
-  <div class="inline-flex self-center items-center  elevation-1 gap-4 bg-yellow-100 p-1 rounded-full">
-    <v-btn variant="outlined" :icon="LineMdMinus" size="x-small" :disabled=" quantity === 0"
-           @click="onQuantityChange(-1)"/>
+  <v-sheet
+    class="d-inline-flex align-center gap-4 bg-white p-1 rounded-sm"
+    border
+    rounded="md"
+  >
+    <v-btn
+      variant="flat"
+      :icon="RadixIconsMinus"
+      size="x-small"
+      :disabled="quantity === 0"
+      @click="onQuantityChange(-1)"
+      tile
+    />
 
     <p>{{ quantity }}</p>
 
-    <v-btn variant="outlined" :icon="LineMdPlus" size="x-small" @click="onQuantityChange(1)"/>
-  </div>
-
+    <v-btn
+      variant="flat"
+      :icon="RadixIconsPlus"
+      size="x-small"
+      @click="onQuantityChange(1)"
+      tile
+    />
+  </v-sheet>
 </template>
 
-<style scoped>
-
-</style>
+<style scoped></style>
